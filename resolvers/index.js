@@ -1,13 +1,14 @@
-const { getAllLps, getLpById, getLpsByIds } = require('../model');
+const { getAllLps, getLpById, getLpsByIds, getLpsByNames } = require('../model');
 
 const resolvers = {
-  Query: {
-    allLps: () => getAllLps(),
-    lpsByIds: (parent, { ids }) => getLpsByIds(ids),
-    lp: (parent, { id }) => getLpById(id),
-  },
+    Query: {
+        allLps: () => getAllLps(),
+        lpsByIds: (parent, { ids }) => getLpsByIds(ids),
+        lpsByNames: (parent, { names }) => getLpsByNames(names),
+        lp: (parent, { id }) => getLpById(id),
+    },
 };
 
 module.exports = {
-  resolvers,
+    resolvers,
 };
