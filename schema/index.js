@@ -21,6 +21,7 @@ const schema = gql`
         allLps: [Landing]
         lpsByIds(ids: [ID]): [Landing]
         lpsByNames(names: [String]): [Landing]
+        lpsByUrls(urls: [String]): [Landing]
         lp(id: ID!): Landing
     }
 `;
