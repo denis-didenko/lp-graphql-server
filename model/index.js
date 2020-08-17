@@ -2,6 +2,7 @@ const path = require('path');
 const csv = require('csvtojson/v2');
 const puppeteer = require('puppeteer');
 
+const iPhone = puppeteer.devices['iPhone 6'];
 const csvFilePath = path.join(__dirname + '/lps.csv');
 
 function readData() {
@@ -31,13 +32,20 @@ const getLpById = id => db.find(landing => landing.lid === id);
 const getLpsByIds = ids => db.filter(landing => ids && ids.includes(landing.lid));
 const getLpsByNames = names => db.filter(landing => names && names.includes(landing.name));
 
-const getLpsByUrls = async urls => {
+const getLpsByUrls = async (urls, platform) => {
     const browser = await puppeteer.launch();
 
     const lids = urls.map(async url => {
+        const correctUrl = url.includes('http') ? url : `https://www.${url}`;
         const page = await browser.newPage();
-        await page.goto(`https://www.${url}`);
+
+        if (platform === 'mob') {
+            await page.emulate(iPhone);
+        }
+
+        await page.goto(correctUrl);
         const id = await page.$eval('input[name="UserForm[lid]"]', el => el.value);
+        await page.close();
 
         return id;
     });

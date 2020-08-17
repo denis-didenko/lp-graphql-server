@@ -19,9 +19,9 @@ const schema = gql`
 
     type Query {
         allLps: [Landing]
-        lpsByIds(ids: [ID]): [Landing]
-        lpsByNames(names: [String]): [Landing]
-        lpsByUrls(urls: [String]): [Landing]
+        lpsByIds(ids: [ID]!): [Landing]
+        lpsByNames(names: [String]!): [Landing]
+        lpsByUrls(urls: [String]!, platform: String!): [Landing]
         lp(id: ID!): Landing
     }
 `;

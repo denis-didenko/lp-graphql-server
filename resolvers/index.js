@@ -5,7 +5,7 @@ const resolvers = {
         allLps: () => getAllLps(),
         lpsByIds: (parent, { ids }) => getLpsByIds(ids),
         lpsByNames: (parent, { names }) => getLpsByNames(names),
-        lpsByUrls: (parent, { urls }) => getLpsByUrls(urls),
+        lpsByUrls: (parent, { urls, platform }) => getLpsByUrls(urls, platform),
         lp: (parent, { id }) => getLpById(id),
     },
 };
