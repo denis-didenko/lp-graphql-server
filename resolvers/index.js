@@ -1,12 +1,15 @@
-const { getAllLps, getLpById, getLpsByIds, getLpsByNames, getLpsByUrls } = require('../model');
+const { getAllLps, getLpById, getLpsByIds, getLpsByNames, getLpsByUrls, saveScreenshot } = require('../model');
 
 const resolvers = {
     Query: {
         allLps: () => getAllLps(),
-        lpsByIds: (parent, { ids }) => getLpsByIds(ids),
-        lpsByNames: (parent, { names }) => getLpsByNames(names),
-        lpsByUrls: (parent, { urls, platform }) => getLpsByUrls(urls, platform),
-        lp: (parent, { id }) => getLpById(id),
+        lpsByIds: (_, { ids }) => getLpsByIds(ids),
+        lpsByNames: (_, { names }) => getLpsByNames(names),
+        lpsByUrls: (_, { urls, platform }) => getLpsByUrls(urls, platform),
+        lp: (_, { id }) => getLpById(id),
+    },
+    Mutation: {
+        saveScreenshot: (_, { url }) => saveScreenshot(url),
     },
 };
 

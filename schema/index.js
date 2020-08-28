@@ -24,6 +24,10 @@ const schema = gql`
         lpsByUrls(urls: [String]!, platform: String!): [Landing]
         lp(id: ID!): Landing
     }
+
+    type Mutation {
+        saveScreenshot(url: String!): Landing
+    }
 `;
 
 module.exports = {
